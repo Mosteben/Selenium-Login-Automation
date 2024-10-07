@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.time.Duration;
 import pages.LoginPage;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,7 +20,10 @@ public class LoginTest {
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.get("https://the-internet.herokuapp.com/login");
+
         loginPage = new LoginPage(driver);
     }
 
